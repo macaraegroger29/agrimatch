@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>AgriMatch - About Us</title>
+  <meta name="description" content="About AgriMatch" />
+  <meta name="keywords" content="AgriMatch, Land, Crops, Farms, Developers" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="{% static 'style/style.css' %}" title="style" />
+</head>
+
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <!-- class="logo_colour", allows you to change the colour of the text -->
+          <h1><a href="index.html">Agri<span class="logo_colour">Match</span></a></h1>
+          <h2>Land and Crop Suitability Management</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
+          <li><a href="{% url 'index' %}">Predictions</a></li>
+          <li><a href="{% url 'examples' %}">Crops Analytics</a></li>
+          <li class="selected"><a href="{% url 'another_page' %}">About</a></li>
+          <li><a href="{% url 'contact' %}">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="content_header"></div>
+    <div id="site_content">
+      <div class="sidebar">
+        <h3>Latest News</h3>
+        <h4>New Website Launched</h4>
+        <h5>August 1st, 2024</h5>
+        <p>Our new website is live! Explore our new features and learn more about our innovative approach to land and crop management.<br /><a href="#">Read more</a></p>
+        
+        <h3>Useful Links</h3>
+        <ul>
+          <li><a href="#">Agriculture News</a></li>
+          <li><a href="#">Farming Resources</a></li>
+          <li><a href="#">Land Management</a></li>
+          <li><a href="#">Crop Science</a></li>
+        </ul>
+        <h3>Search</h3>
+        <form method="post" action="#" id="search_form">
+          <p>
+            <input class="search" type="text" name="search_field" value="Enter keywords..." />
+            <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="{% static 'style/search.png' %}" alt="Search" title="Search" />
+          </p>
+        </form>
+      </div>
+      <div id="content">
+        <!-- insert the page content here -->
+        <h1>About AgriMatch</h1>
+        <p>Welcome to AgriMatch, your ultimate tool for managing land and crop suitability. Our mission is to provide farmers, landowners, and agricultural experts with the insights they need to make informed decisions that optimize crop yield and land use.</p>
+        
+        <h2>About the Project</h2>
+        <p>AgriMatch was born out of a passion for innovation in agriculture. We combine the latest in data analytics, AI, and agronomy to create a platform that predicts the best crops for specific land types. Our goal is to ensure that every piece of land is used to its fullest potential, benefiting both farmers and the environment.</p>
+
+        <h2>The Farms We Support</h2>
+        <p>We work closely with a network of farms across the region, providing them with tailored recommendations for crop planning and soil management. These farms range from small, family-owned plots to large agricultural enterprises. By working together, we aim to transform the agricultural landscape and improve food security.</p>
+        
+        <h2>Meet the Developers</h2>
+        <p>The AgriMatch team is made up of passionate individuals who believe in the power of technology to solve real-world problems. Here are the people behind the project:</p>
+        
+        <ul>
+          <li><strong>Carl Ivan A. Alatan</strong> - Project Lead and Data Scientist</li>
+          <li><strong>Roger T. Macaraeg</strong> - Lead Developer and System Architect</li>
+          <li><strong>Dhea Barte</strong> - UX/UI Designer and Frontend Developer</li>
+          <li><strong>Charles Benirtez</strong> - Backend Developer and Database Specialist</li>
+        </ul>
+
+        <p>Our diverse skills and experiences come together to create a robust platform that serves the needs of modern agriculture. We are committed to continuous improvement and innovation in our field.</p>
+      </div>
+    </div>
+    <div id="content_footer"></div>
+    <div id="footer">
+      Copyright &copy; 2024 AgriMatch | Designed by Carl, Roger, Dhea, and Charles
+    </div>
+  </div>
+</body>
+</html>

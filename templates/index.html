@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>AgriMatch</title>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  <link rel="stylesheet" type="text/css" href="{% static 'style/style.css' %}" title="style" />
+</head>
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <h1><a href="{% url 'index' %}">Agri<span class="logo_colour">Match</span></a></h1>
+          <h2>Land and Crop Suitability Management</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <li class="selected"><a href="{% url 'index' %}">Predictions</a></li>
+          <li><a href="{% url 'examples' %}">Crops Analytics</a></li>
+          <li><a href="{% url 'another_page' %}">About</a></li>
+          <li><a href="{% url 'contact' %}">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="content_header"></div>
+    <div id="site_content">
+      <div class="sidebar">
+        <h3>Recent Predictions</h3>
+        {% if recent_predictions %}
+          {% for prediction in recent_predictions %}
+            <h4>{{ prediction.crop_name }}</h4>
+            <h5>{{ prediction.date|date:"F jS, Y" }}</h5>
+          {% endfor %}
+        {% else %}
+          <p>No recent predictions available.</p>
+        {% endif %}
+      </div>
+      
+      <div id="content">
+        <h1>Crop Recommendation</h1>
+        <form action="{% url 'predict_crop' %}" method="post">
+          {% csrf_token %}
+          <div class="form_settings">
+            <p><span>N (Nitrogen)</span><input type="text" name="nitrogen" value="" required/></p>
+            <p><span>P (Phosphorus)</span><input type="text" name="phosphorus" value="" required/></p>
+            <p><span>K (Potassium)</span><input type="text" name="potassium" value="" required/></p>
+            <p><span>Temperature (°C)</span><input type="text" name="temperature" value="" required/></p>
+            <p><span>Humidity (%)</span><input type="text" name="humidity" value="" required/></p>
+            <p><span>pH Level</span><input type="text" name="ph" value="" required/></p>
+            <p><span>Rainfall (mm)</span><input type="text" name="rainfall" value="" required/></p>
+            <p style="padding-top: 15px"><span>&nbsp;</span><input class="submit" type="submit" name="predict" value="Predict" /></p>
+          </div>
+        </form>
+
+        {% if prediction %}
+  <h2>Prediction Result</h2>
+  <p>The recommended crop is <strong style="color: black;">{{ prediction }}</strong></p>
+{% endif %}
+
+      </div>
+    </div>
+    <div id="content_footer"></div>
+    <div id="footer">
+      Copyright &copy; RCDC | <a href="https://www.facebook.com/ur.gerro">Roger</a> | <a href="https://www.facebook.com/PuntiChips30">Carl</a> | <a href="https://www.facebook.com/profile.php?id=100072699784357">Dhea</a> | <a href="https://www.facebook.com/profile.php?id=100009851371422">Charles</a>
+    </div>
+  </div>
+</body>
+</html>

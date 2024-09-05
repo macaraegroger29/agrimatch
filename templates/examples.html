@@ -1,0 +1,129 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>AgriMatch</title>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  <link rel="stylesheet" type="text/css" href="{% static 'style/style.css' %}" title="style" />
+  <!-- Add Chart.js library -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    /* Full viewport height for main container */
+    #main {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Center content horizontally and vertically */
+    #site_content {
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Center horizontally */
+      justify-content: center; /* Center vertically */
+      flex: 1; /* Take up remaining space */
+      padding: 30px; /* Add padding if needed */
+
+    }
+
+    /* Center content within #content */
+    #content {
+      text-align: center;
+      margin: 0px 0; /* Add margin to create space around content */
+    }
+
+    /* Container for the chart */
+    .chart-container {
+      width: 500px; /* Set width as needed */
+      margin: 0 auto; /* Center horizontally */
+    }
+
+    /* Spacing around heading */
+      
+  </style>
+</head>
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <h1><a href="{% url 'index' %}">Agri<span class="logo_colour">Match</span></a></h1>
+          <h2>Land and Crop Suitability Management</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <li><a href="{% url 'index' %}">Predictions</a></li>
+          <li class="selected"><a href="{% url 'examples' %}">Crops Analytics</a></li>
+          <li><a href="{% url 'another_page' %}">About</a></li>
+          <li><a href="{% url 'contact' %}">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="content_header"></div>
+    <div id="site_content">
+    
+      <div id="content">
+        <h2>Top 5 Suitable Crops</h2>
+        <div class="chart-container">
+          <canvas id="cropPieChart" width="400" height="400"></canvas> <!-- Canvas element for the pie chart -->
+        </div>
+
+        <script>
+          // Retrieve the JSON data from the Django context
+          var cropNames = JSON.parse('{{ crop_names_json|escapejs }}');
+          var cropCounts = JSON.parse('{{ crop_counts_json|escapejs }}');
+          var predictedCrop = '{{ predicted_crop }}';  // Get the predicted crop from context FFD449
+
+          // Define default colors 548C2F
+          var defaultColors = ['#DBD2E0', '#FF8811', '#5398BE', '#5B3000', '#F0E100'];
+
+          // Highlight the predicted crop by changing its color (red here)
+          var backgroundColors = cropNames.map(function(cropName) {
+            return (cropName === predictedCrop) ? '#6DB106' : defaultColors[cropNames.indexOf(cropName)];
+          });
+
+          var total = cropCounts.reduce((a, b) => a + b, 0);
+
+          var ctx = document.getElementById('cropPieChart').getContext('2d');
+          var cropPieChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+              labels: cropNames,
+              datasets: [{
+                label: 'Top 5 Crops',
+                data: cropCounts,
+                backgroundColor: backgroundColors
+              }]
+            },
+            options: {
+              responsive: true,
+              plugins: {
+                legend: {
+                  position: 'top',
+                },
+                tooltip: {
+                  callbacks: {
+                    label: function(tooltipItem) {
+                      var currentValue = tooltipItem.raw;
+                      var percentage = ((currentValue / total) * 100).toFixed(2);
+                      return tooltipItem.label + ': ' + percentage + '%';
+                    }
+                  }
+                }
+              }
+            }
+          });
+        </script>
+      </div>
+    </div>
+    <div id="content_footer"></div>
+    <div id="footer">
+      Copyright &copy; RCDC-Synthesis | <a href="https://www.facebook.com/ur.gerro">Roger</a> | <a href="https://www.facebook.com/PuntiChips30">Carl</a> | <a href="https://www.facebook.com/profile.php?id=100072699784357">Dhea</a> | <a href="https://www.facebook.com/profile.php?id=100009851371422">Charles</a>
+    </div>
+  </div>
+</body>
+</html>

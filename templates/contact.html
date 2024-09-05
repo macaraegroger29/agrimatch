@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>AgriMatch - Contact Us</title>
+    <meta name="description" content="AgriMatch Contact Information" />
+    <meta name="keywords" content="AgriMatch, Contact, Agriculture, Land, Crops" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="{% static 'style/style.css' %}" title="style" />
+</head>
+
+<body>
+    <div id="main">
+        <div id="header">
+            <div id="logo">
+                <div id="logo_text">
+                    <h1><a href="/">Agri<span class="logo_colour">Match</span></a></h1>
+                    <h2>Land and Crop Suitability Management</h2>
+                </div>
+            </div>
+            <div id="menubar">
+                <ul id="menu">
+                  <li><a href="{% url 'index' %}">Predictions</a></li>
+                  <li><a href="{% url 'examples' %}">Crops Analytics</a></li>
+                  <li><a href="{% url 'another_page' %}">About</a></li>
+                  <li class="selected"><a href="{% url 'contact' %}">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="content_header"></div>
+        <div id="site_content">
+            <div class="sidebar">
+                <h3>Farming Wisdom</h3>
+                <p>"The ultimate goal of farming is not the growing of crops, but the cultivation and perfection of human beings." - Masanobu Fukuoka</p>
+                <h3>Useful Links</h3>
+                <ul>
+                    <li><a href="#">Agriculture News</a></li>
+                    <li><a href="#">Farming Resources</a></li>
+                    <li><a href="#">Land Management</a></li>
+                    <li><a href="#">Crop Science</a></li>
+                </ul>
+            </div>
+            <div id="content">
+                <h1>Contact Us</h1>
+                <p>We'd love to hear from you! If you have any questions, feedback, or inquiries, please reach out to one of our team members below.</p>
+                <div class="contact_info">
+                    <h2>Our Team</h2>
+                    <p><strong>Carl Ivan A. Alatan</strong><br>
+                        Email: <a href="mailto:carl@example.com">carl@example.com</a><br>
+                        Phone: +63 912 345 6789
+                    </p>
+                    <p><strong>Roger T. Macaraeg</strong><br>
+                        Email: <a href="mailto:roger@example.com">roger@example.com</a><br>
+                        Phone: +63 912 345 6790
+                    </p>
+                    <p><strong>Dhea Barte</strong><br>
+                        Email: <a href="mailto:dhea@example.com">dhea@example.com</a><br>
+                        Phone: +63 912 345 6791
+                    </p>
+                    <p><strong>Charles Benirtez</strong><br>
+                        Email: <a href="mailto:charles@example.com">charles@example.com</a><br>
+                        Phone: +63 912 345 6792
+                    </p>
+                </div>
+                <div class="form_section">
+                    <h2>Get in Touch</h2>
+                    <p>If you prefer, you can also use the contact form below to send us a message directly.</p>
+                    <form action="#" method="post">
+                        <div class="form_settings">
+                            <p><span>Name</span><input class="contact" type="text" name="your_name" value="" /></p>
+                            <p><span>Email Address</span><input class="contact" type="text" name="your_email" value="" /></p>
+                            <p><span>Message</span><textarea class="contact textarea" rows="8" cols="50" name="your_enquiry"></textarea></p>
+                            <p style="padding-top: 15px"><span>&nbsp;</span><input class="submit" type="submit" name="contact_submitted" value="Submit" /></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="content_footer"></div>
+        <div id="footer">
+            <p>&copy; 2024 AgriMatch | Designed by Carl, Roger, Dhea, and Charles</p>
+        </div>
+    </div>
+</body>
+
+</html>
